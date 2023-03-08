@@ -1,0 +1,9 @@
+{
+  "name": "cha-cha-chat",
+  "version": "0.0.1",
+  "description": "Real-time chat application powered by Node.JS and Socket.IO",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1"
+  }
+}
