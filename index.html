@@ -10,9 +10,13 @@
       #input:focus { outline: none; }
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
 
-      #messages { list-style-type: none; margin: 0; padding: 0; color:#bbb}
+      #messages { list-style-type: none; margin: 0; padding: 0; color:#bbb; font-size: small;}
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #444; }
+
+      .server {
+        color: #629762;
+      }
     </style>
   </head>
 
@@ -29,6 +33,10 @@
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
+
+      // Retrieve unique username
+      var username = prompt("Username: ");
+      socket.emit('send username', username);
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -47,7 +55,8 @@
 
       socket.on('server message', function(msg) {
         var item = document.createElement('li');
-        item.textContent = "Server: " + msg;
+        item.setAttribute('class', 'server');
+        item.textContent = msg;
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });
